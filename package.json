@@ -1,0 +1,11 @@
+{
+  "name": "csye6225-serverless",
+  "version": "1.0.0",
+  "description": "Lambda function for email verification via SNS",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "zip": "zip -r serverless.zip index.mjs node_modules/ package.json"
+  },
+  "dependencies": {}
+}
