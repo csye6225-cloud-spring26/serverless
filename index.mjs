@@ -37,12 +37,25 @@ export const handler = async (event) => {
     // --- Send verification email via Mailgun ---
     const verificationLink = `http://${DOMAIN_NAME}/validateEmail?email=${encodeURIComponent(email)}&token=${token}`;
 
-    const emailBody = [
-      `from=noreply@${MAILGUN_DOMAIN}`,
-      `to=${email}`,
-      `subject=Verify Your Email Address`,
-      `html=<h2>Welcome, ${firstName}!</h2><p>Please verify your email address by clicking the link below:</p><p><a href="${verificationLink}">Verify Email</a></p><p>This link will expire in 1 minute.</p><p>If you did not create an account, please ignore this email.</p>`,
-    ].join("&");
+    const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h2 style="color: #333;">Welcome to CSYE 6225, ${firstName}!</h2>
+      <p>Thank you for creating your account. Please verify your email address by clicking the button below:</p>
+      <p style="text-align: center; margin: 30px 0;">
+        <a href="${verificationLink}" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-size: 16px;">Verify Email</a>
+      </p>
+      <p style="color: #666; font-size: 14px;">This link will expire in 1 minute.</p>
+      <p style="color: #666; font-size: 14px;">If you did not create an account, please ignore this email.</p>
+      <hr style="border: none; border-top: 1px solid #eee; margin-top: 30px;">
+      <p style="color: #999; font-size: 12px;">CSYE 6225 - Cloud Native Web Application</p>
+    </div>`;
+
+    const emailBody = new URLSearchParams({
+      from: `noreply@${MAILGUN_DOMAIN}`,
+      to: email,
+      subject: 'Verify Your Email Address',
+      html: htmlContent,
+    }).toString();
 
     try {
       await sendMailgunEmail(emailBody);
