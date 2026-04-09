@@ -35,7 +35,7 @@ export const handler = async (event) => {
     }
 
     // --- Send verification email via Mailgun ---
-    const verificationLink = `http://${DOMAIN_NAME}/validateEmail?email=${encodeURIComponent(email)}&token=${token}`;
+    const verificationLink = `https://${DOMAIN_NAME}/validateEmail?email=${encodeURIComponent(email)}&token=${token}`;
 
     const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
