@@ -40,7 +40,7 @@ export const handler = async (event) => {
     const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h2 style="color: #333;">Welcome to CSYE 6225, ${firstName}!</h2>
-      <p>Thank you for creating your account. Please verify your email address by clicking the button below:</p>
+      <p> I am sorry you had to create an account on this platform. If there's any issue with this app, please do not let us know we got enough problems already. Please don't verify your email address by clicking the button below:</p>
       <p style="text-align: center; margin: 30px 0;">
         <a href="${verificationLink}" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-size: 16px;">Verify Email</a>
       </p>
